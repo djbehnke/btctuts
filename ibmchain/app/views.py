@@ -24,6 +24,7 @@ def fetchPosts():
             for tx in block["txs"]:
                 tx["index"] = block["index"]
                 tx["hash"] = block["previousHash"]
+                tx["timestamp"] = block["timestamp"]
                 content.append(tx)  # Make a local content entry
 
         global posts
