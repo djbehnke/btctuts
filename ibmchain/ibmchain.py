@@ -1,8 +1,8 @@
 import json  # A nice format for our block data
 import time  # For timestamps
 from hashlib import sha256  # The hash algorithm used
-from flask import Flask, request
-import requests
+from flask import Flask, request # For the web page without a server
+import requests # To...
 
 
 class Block:
@@ -90,7 +90,7 @@ class Blockchain:
         if not self.unconfirmedTxs:  # No txs to add?...
             return False  # Then there's no need to work
 
-        lastBlock = self.lastBlock
+        lastBlock = self.lastBlock # Grb the most recent block
 
         newBlock = Block(index=lastBlock.index + 1,  # A new block
                          txs=self.unconfirmedTxs,  # Mempool data is added to block
@@ -105,6 +105,9 @@ class Blockchain:
 
     @classmethod
     def checkChainValidity(cls, chain):
+        """
+        Will run through the chain block by block in order to determine validity of the blockchain
+        """
         result = True
         previousHash = 0
 
@@ -130,6 +133,12 @@ class Blockchain:
         return (propHash.startswith('0'*Blockchain.difficulty) and  # Difficulty check
                 propHash == block.makeHash())  # Validity of hash check
 
+"""
+ABANDON HOPE ALL YE WHO ENTER HERE
+I do not know flask.
+I literally copied this code.
+Please say thank you to Satwik Kansal at IBM for making this tutorial
+"""
 
 app = Flask(__name__)  # Make a new flask app
 blockchain = Blockchain()  # The local copy of the blockchain
