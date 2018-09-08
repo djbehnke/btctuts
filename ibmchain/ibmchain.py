@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import json  # A nice format for our block data
 import time  # For timestamps
 from hashlib import sha256  # The hash algorithm used
